@@ -1,14 +1,17 @@
 import os
 import psycopg2
 from flask import Flask
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
 def get_db_connection():
-    conn = psycopg2.connect(host='dpg-cqoc75tsvqrc73fetm2g-a.oregon-postgres.render.com',
-                            database='database_render_d5mv',
-                            user='heitor',
-                            password='Pwnp8p1Dyhx4xxFi1dBHCe4B627t7uye')
+    conn = psycopg2.connect(host=os.getenv('HOST'),
+                            database=os.getenv('DATABASE'),
+                            user=os.getenv('USER'),
+                            password=os.getenv('PASSWORD'))
     return conn
 
 
